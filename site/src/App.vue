@@ -1,7 +1,44 @@
 <template>
     <div id="pp">
+        <div id="info">
+            
+
+            <div id="info_txt" v-if="rappelDisplayed || solutionDisplayed">
+                <div id="rappel" v-if="rappelDisplayed">
+                    un texte :
+                    <div class="codeblock">
+                        PoLrNoFrTsAuRhOgNoNb(Og+B)NoNpBhPtTlOs
+                    </div>
+
+                    une énigme qui débloque la clé privé : 
+                    <div class="codeblock">
+                        D'apparence invisible, approche toi de moi et tu perd ton éclat, qui suis-je ?
+                    </div>
+                    <div class="tip">
+                        <div>🛈</div>
+                        <div>
+                            la véritable "clé privé" c'est la réponse de l'énigme traduite en anglais
+                        </div>
+                    </div>
+
+                    une autre énigme qui débloque la clé publique : 
+                    <div class="codeblock">
+                        soixante pommes vertes et douze oranges toutes les années qui pour toujours règne sur le verger. Roi de tout fruits français ainsi est son surnom. Qui est-il ?
+                    </div>
+                </div>
+
+                <div id="md" v-html="md" v-if="solutionDisplayed"></div>
+            </div>
+
+            <div id="info_btn">
+                <button @click="solutionDisplayed = false; rappelDisplayed = !rappelDisplayed">Rappel</button>
+                <button @click="rappelDisplayed = false; solutionDisplayed = !solutionDisplayed">Solution</button>
+            </div>
+           
+        </div>
+        
         <RouterView></RouterView>
-        <canvas></canvas>
+        <canvas id="bg"></canvas>
     </div>
 </template>
   
@@ -10,8 +47,28 @@
 
     import { RouterView } from 'vue-router'
 
+    import { ref } from 'vue'
+
+    const rappelDisplayed = ref(false)
+    const solutionDisplayed = ref(false)
+
+    const md = ref('')
+
+    md.value = fetch('./src/assets/solution.html')
+        .then(response => response.text())
+        .then(text => {
+            md.value = text
+        })
+ 
     export default {
         name: 'App',
+        setup() {
+            return {
+                rappelDisplayed,
+                solutionDisplayed,
+                md
+            }
+        },
         components: {
             RouterView
         },
@@ -37,8 +94,106 @@
     width: 100vw;
 }
 
-#pp > canvas {
+#bg {
     z-index: 0;
+}
+
+/* codeblock */
+
+.codeblock {
+    font-family: monospace;
+    font-size: 1.2em;
+    padding: var(--padding);
+    border: 2px solid var(--txt-color);
+    border-radius: var(--border-radius);
+    background-color: var(--bg-color);
+}
+
+/* tip */
+
+.tip > *:nth-child(2) {
+    font-size: 0.8em !important;
+    color: var(--txt-color);
+    font-style: italic;
+    opacity: 0.5;
+}
+
+.tip > *:nth-child(1) {
+    font-size: 1.5em;
+    color: var(--txt-color);
+
+    background-color: #0077ff;
+    border-radius: 10px;
+    width: 1.5em;
+    aspect-ratio: 1 / 1;
+}
+
+.tip {
+    display: flex;
+    align-items: center;
+    justify-content: left;
+    gap: var(--gap);
+    flex-direction: row;
+}
+/* info */
+
+#info {
+    z-index: 2;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: end;
+    align-items: right;
+
+    gap: var(--gap);
+
+    position: absolute;
+    bottom: 0px;
+    left: 0px;
+
+    pointer-events: none;
+}
+
+#info > * {
+    width: fit-content;
+}
+
+#info button {
+    pointer-events: all;
+}
+
+#info_btn {
+    display: flex;
+    flex-direction: row;
+    justify-content: right;
+    align-items: end;
+
+    gap: var(--gap);
+
+    padding: var(--padding);
+}
+
+#info_txt > *{
+    display: flex;
+    flex-direction: column;
+    justify-content: left;
+    align-items: start;
+
+    backdrop-filter: blur(5px);
+
+    border: 2px solid var(--txt-color);
+
+    padding: var(--padding);
+
+    gap: var(--gap);
+}
+
+#md {
+    pointer-events: all;
+    overflow: auto;
+    height: 80vh;
+
+    text-align: left;
 }
 
 </style>

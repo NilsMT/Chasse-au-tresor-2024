@@ -71,7 +71,7 @@ router.beforeEach((to, from, next) => {
     if (to.meta.restricted) { //page admin
 
         let psw = prompt('Mot de passe ?')
-        if (psw === 'Chiasse') { //NAV: PSW ADMIN
+        if (btoa(psw) === 'Q2hpYXNzZQ==') { //NAV: PSW ADMIN
             next()
         } else {
             next({ name: 'La honte' })
@@ -80,7 +80,7 @@ router.beforeEach((to, from, next) => {
     } else if (to.meta.passwordRequired) { //page final
 
         let psw = prompt('Mot de passe ?')
-        if (psw === 'TheUnderdogs') { //NAV: PSW PUBLIC
+        if (btoa(psw) === 'VGhlVW5kZXJkb2dz') { //NAV: PSW PUBLIC
             next()
         } else {
             next({ name: 'La honte' })
