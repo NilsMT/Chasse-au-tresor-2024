@@ -94,8 +94,7 @@
         setup() {
             return {
                 rappelDisplayed,
-                solutionDisplayed,
-                md
+                solutionDisplayed
             }
         },
         components: {
