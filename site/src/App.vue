@@ -188,6 +188,7 @@
 }
 
 #info_btn {
+    
     display: flex;
     flex-direction: row;
     justify-content: right;

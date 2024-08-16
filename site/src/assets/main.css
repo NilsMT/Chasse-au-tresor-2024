@@ -54,6 +54,7 @@ a, button {
 
 a, button, a *, button * {
     color: var(--bg-color) !important;
+    cursor: pointer;
 }
 
 a:hover, button:hover {
