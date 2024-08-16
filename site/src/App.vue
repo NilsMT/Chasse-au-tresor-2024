@@ -184,9 +184,6 @@
 
 #info > * {
     width: fit-content;
-}
-
-#info button {
     pointer-events: all;
 }
 
