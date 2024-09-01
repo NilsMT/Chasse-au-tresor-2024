@@ -55,7 +55,7 @@ const router = createRouter({
         component: LaHonte,
     },
     {
-        path: '/:Erreur404',
+        path: '/:pathMatch(.*)*',
         name: 'Erreur 404',
         component: Erreur404,
     }
