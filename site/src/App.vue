@@ -5,19 +5,21 @@
 
             <div id="info_txt" v-if="rappelDisplayed || solutionDisplayed">
                 <div id="rappel" v-if="rappelDisplayed">
+                    Un célèbre cryptographe m'a laissé des informations qui dirige vers sont trésor numérique !<br>
+                    
                     un texte :
                     <div class="codeblock">
                         PoLrNoFrTsAuRhOgNoNb(Og+B)NoNpBhPtTlOs
                     </div>
 
-                    une énigme qui débloque la clé privé : 
+                    une énigme qui débloque la clé privée : 
                     <div class="codeblock">
                         D'apparence invisible, approche toi de moi et tu perd ton éclat, qui suis-je ?
                     </div>
                     <div class="tip">
                         <div>🛈</div>
                         <div>
-                            la véritable "clé privé" c'est la réponse de l'énigme traduite en anglais
+                            la véritable "clé privée" est la réponse de l'énigme traduite en anglais
                         </div>
                     </div>
 
