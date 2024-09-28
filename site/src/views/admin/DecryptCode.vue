@@ -1,6 +1,6 @@
 <template>
     <div id="app_cont">
-      <h1>Décryption du code de récompense</h1>
+      <h1>Décryptage du code de récompense</h1>
       <input type="text" v-model="code" placeholder="Code de récompense">
       <button @click="handleDecryptionCode" v-if="code!=''">
           Démarrer le processus
